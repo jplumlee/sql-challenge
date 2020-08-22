@@ -5,16 +5,14 @@ CREATE TABLE departments (
 );
 
 CREATE TABLE dept_emp (
-	emp_no SERIAL,
-	dept_no VARCHAR,
-	PRIMARY KEY (emp_no)
+	emp_no INT NOT NULL,
+	dept_no VARCHAR
 );	
 
 CREATE TABLE dept_manager (
 	dept_no VARCHAR,
 	emp_no SERIAL,
-	PRIMARY KEY (emp_no),
-	FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
+	PRIMARY KEY (emp_no)
 );
 
 CREATE TABLE employees (
@@ -25,8 +23,7 @@ CREATE TABLE employees (
 	last_name VARCHAR,
 	sex VARCHAR,
 	hire_date DATE,
-	PRIMARY KEY (emp_no),
-	FOREIGN KEY (emp_title_id) REFERENCES titles(title_id)
+	PRIMARY KEY (emp_no)
 );
 
 CREATE TABLE salaries (
@@ -47,3 +44,21 @@ ALTER TABLE dept_emp
 	REFERENCES departments(dept_no)
     MATCH SIMPLE
 ;
+
+ALTER TABLE dept_emp
+	ADD FOREIGN KEY (emp_no)
+	REFERENCES employees(emp_no)
+    MATCH SIMPLE
+;
+
+ALTER TABLE dept_manager
+	ADD FOREIGN KEY (dept_no)
+	REFERENCES departments(dept_no)
+    MATCH SIMPLE
+;
+
+ALTER TABLE employees
+	ADD FOREIGN KEY (emp_title_id)
+	REFERENCES titles(title_id)
+    MATCH SIMPLE
+ ;
