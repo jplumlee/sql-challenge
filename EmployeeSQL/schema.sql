@@ -1,5 +1,5 @@
 CREATE TABLE departments (
-	dept_no VARCHAR,
+	dept_no VARCHAR NOT NULL,
 	dept_name VARCHAR,
 	PRIMARY KEY (dept_no)
 );
@@ -33,7 +33,7 @@ CREATE TABLE salaries (
 );
 
 CREATE TABLE titles (
-	title_id VARCHAR,
+	title_id VARCHAR NOT NULL,
 	title VARCHAR,
 	PRIMARY KEY (title_id)
 );
